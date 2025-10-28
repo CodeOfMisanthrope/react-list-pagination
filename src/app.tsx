@@ -1,3 +1,4 @@
+import {type MouseEvent} from "react";
 import {useState} from "react";
 import styles from '~/app.module.css';
 import data from '~/data.json';
@@ -31,8 +32,8 @@ export const App = () => {
         setIsLast(false);
     };
 
-    const selectStep = (event) => {
-        const id = Number(event.target.dataset.id);
+    const selectStep = (event: MouseEvent<HTMLButtonElement>) => {
+        const id = Number(event.currentTarget.dataset.id);
         setActiveIndex(id);
         updateStepFirstOrLast(id);
     };
