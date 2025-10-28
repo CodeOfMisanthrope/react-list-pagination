@@ -12,18 +12,7 @@ export const App = () => {
     const nextStep = () => {
         setActiveIndex((index) => {
             const newIndex = index + 1;
-            if (newIndex === 0) {
-                setIsFirst(true);
-                setIsLast(false);
-
-            } else if (newIndex === steps.length - 1) {
-                setIsFirst(false);
-                setIsLast(true);
-
-            } else {
-                setIsFirst(false);
-                setIsLast(false);
-            }
+            updateStepFirstOrLast(newIndex);
             return newIndex;
         });
     };
@@ -31,18 +20,7 @@ export const App = () => {
     const prevStep = () => {
         setActiveIndex((index) => {
             const newIndex = index - 1;
-            if (newIndex === 0) {
-                setIsFirst(true);
-                setIsLast(false);
-
-            } else if (newIndex === steps.length - 1) {
-                setIsFirst(false);
-                setIsLast(true);
-
-            } else {
-                setIsFirst(false);
-                setIsLast(false);
-            }
+            updateStepFirstOrLast(newIndex);
             return newIndex;
         });
     };
@@ -56,7 +34,10 @@ export const App = () => {
     const selectStep = (event) => {
         const id = Number(event.target.dataset.id);
         setActiveIndex(id);
+        updateStepFirstOrLast(id);
+    };
 
+    const updateStepFirstOrLast = (id: number) => {
         if (id === 0) {
             setIsFirst(true);
             setIsLast(false);
